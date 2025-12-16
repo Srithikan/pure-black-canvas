@@ -147,16 +147,21 @@ const Reports = () => {
               </TabsList>
               
               <TabsContent value="pressure" className="space-y-4">
-                <div className="h-48 flex items-end justify-between gap-2 px-2">
-                  {weeklyData.map((data) => (
-                    <div key={data.day} className="flex-1 flex flex-col items-center gap-2">
-                      <div
-                        className="w-full bg-gradient-to-t from-primary to-primary/60 rounded-t-lg transition-all duration-500 hover:opacity-80"
-                        style={{ height: `${(data.pressure / maxPressure) * 100}%` }}
+                <div className="flex flex-col">
+                  <div className="h-40 flex items-end justify-between gap-2 px-2">
+                    {weeklyData.map((data) => (
+                      <div 
+                        key={data.day} 
+                        className="flex-1 bg-gradient-to-t from-primary to-primary/60 rounded-t-lg transition-all duration-500 hover:opacity-80"
+                        style={{ height: `${(data.pressure / maxPressure) * 100}%`, minHeight: '8px' }}
                       />
-                      <span className="text-xs text-muted-foreground">{data.day}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  <div className="flex justify-between gap-2 px-2 pt-2">
+                    {weeklyData.map((data) => (
+                      <span key={data.day} className="flex-1 text-center text-xs text-muted-foreground">{data.day}</span>
+                    ))}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between text-sm pt-4 border-t">
                   <div>
@@ -175,23 +180,28 @@ const Reports = () => {
               </TabsContent>
               
               <TabsContent value="temperature" className="space-y-4">
-                <div className="h-48 flex items-end justify-between gap-2 px-2">
-                  {weeklyData.map((data) => {
-                    const maxTemp = 37;
-                    const minTemp = 36;
-                    const range = maxTemp - minTemp;
-                    const height = ((data.temp - minTemp) / range) * 100;
-                    
-                    return (
-                      <div key={data.day} className="flex-1 flex flex-col items-center gap-2">
+                <div className="flex flex-col">
+                  <div className="h-40 flex items-end justify-between gap-2 px-2">
+                    {weeklyData.map((data) => {
+                      const maxTemp = 37;
+                      const minTemp = 36;
+                      const range = maxTemp - minTemp;
+                      const height = ((data.temp - minTemp) / range) * 100;
+                      
+                      return (
                         <div
-                          className="w-full bg-gradient-to-t from-info to-info/60 rounded-t-lg transition-all duration-500 hover:opacity-80"
-                          style={{ height: `${height}%` }}
+                          key={data.day}
+                          className="flex-1 bg-gradient-to-t from-info to-info/60 rounded-t-lg transition-all duration-500 hover:opacity-80"
+                          style={{ height: `${height}%`, minHeight: '8px' }}
                         />
-                        <span className="text-xs text-muted-foreground">{data.day}</span>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
+                  <div className="flex justify-between gap-2 px-2 pt-2">
+                    {weeklyData.map((data) => (
+                      <span key={data.day} className="flex-1 text-center text-xs text-muted-foreground">{data.day}</span>
+                    ))}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between text-sm pt-4 border-t">
                   <div>
