@@ -2,24 +2,17 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Footprints, Wind, Snowflake, Flame, Sparkles } from "lucide-react";
+import { Wind, Snowflake, Flame, Sparkles } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
 import { toast } from "sonner";
 
-type MassageMode = "normal" | "cooling" | "warm" | "acupuncture";
+type MassageMode = "cooling" | "warm";
 
 const Massager = () => {
   const [isOn, setIsOn] = useState(false);
-  const [activeMode, setActiveMode] = useState<MassageMode>("normal");
+  const [activeMode, setActiveMode] = useState<MassageMode>("cooling");
 
   const modes = [
-    {
-      id: "normal" as MassageMode,
-      name: "Normal Mode",
-      icon: Footprints,
-      description: "Standard massage therapy",
-      color: "from-primary to-primary/80",
-    },
     {
       id: "cooling" as MassageMode,
       name: "Cooling Mode",
@@ -33,13 +26,6 @@ const Massager = () => {
       icon: Flame,
       description: "Epsom salt simulation",
       color: "from-warning to-warning/80",
-    },
-    {
-      id: "acupuncture" as MassageMode,
-      name: "Acupuncture Mode",
-      icon: Sparkles,
-      description: "Targeted pressure points",
-      color: "from-secondary to-secondary/80",
     },
   ];
 
